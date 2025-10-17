@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const rutaBase = './carpetas_creadas';
+
 fs.readFile('nombres.txt', 'utf8', (err, data) => {
     if (err) {
         console.error('Error al leer el archivo:', err);
@@ -9,7 +11,7 @@ fs.readFile('nombres.txt', 'utf8', (err, data) => {
     const nombres = data.split('\n').map(n => n.trim()).filter(n => n.length > 0);
     
     nombres.forEach(nombre => {
-        const rutaCarpeta = path.join("E:\Salva 2\PERSONAL\CLASES\CLASES UNIVAC\Periodismo\MIC\TAREAS", nombre);
+        const rutaCarpeta = path.join(rutaBase, nombre);
         try {
             if (!fs.existsSync(rutaCarpeta)) {
                 fs.mkdirSync(rutaCarpeta, { recursive: true });
